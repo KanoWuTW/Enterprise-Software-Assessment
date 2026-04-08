@@ -60,4 +60,8 @@ pip install -r requirements.txt
 python manage.py migrate
 python manage.py loaddata category.json
 python manage.py loaddata product.json
+
+python manage.py test # Runtest
+
 python manage.py runserver
+```
