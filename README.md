@@ -69,7 +69,7 @@ python manage.py runserver
 ## Using the system
 
 1. Open a browser
-2. Input URL http://127.0.0.1:8000/ (Local host) or https://t02cw25.pythonanywhere.com/ (PythonAnywhere)
+2. Vist URL http://127.0.0.1:8000/ (Local host) or https://t02cw25.pythonanywhere.com/ (PythonAnywhere)
 
 ### Looking items
 1. On the home page, use the left and right arrow buttons to browse all the items.
