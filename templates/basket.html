@@ -1,0 +1,87 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Online Shooping - Basket</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>Basket</h1>
+    </header>
+    <main>
+      <!-- Navigation Bar -->
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">The Shooping Site</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <!-- Home link -->
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+              </li>
+              <!-- Basket link -->
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/user/basket">My Basket</a>
+              </li>
+              <!-- Search form -->
+              <form class="d-flex" role="search" method="GET" id="searchForm" action="/item/search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword" />
+                <input type="hidden" name="page" id="defaultpage" />
+                <button class="btn btn-outline-success" type="submit">Search</button>
+              </form>
+              <!-- User dropdown menu -->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <span>{{username}}</span>
+                </a>
+                <ul class="dropdown-menu">
+                  {% if user.is_authenticated %}
+                  <li><a class="dropdown-item" href="/account/logout">Log out</a></li>
+                  {% else %}
+                  <li><a class="dropdown-item" href="/account/signin">Sign in</a></li>
+                  <li><a class="dropdown-item" href="/account/signup">Sign up</a></li>
+                  {% endif %}
+                  <li><a class="dropdown-item" href="/user/wishlist">Wishlist</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- Basket List -->
+      <span>Your basket</span>
+      <ul id="basket">
+        {% for item in data %}
+        <li>
+          <!-- Product name link -->
+          <a href="/item?id={{item.id}}" class="itemLink">{{item.name}}</a>
+          <!-- Product price -->
+          <span class="price">£{{item.price}}</span>
+          <!-- Product quantity -->
+          <span class="quantity">quantity: {{item.quantity}}</span>
+          <!-- Remove from basket button -->
+          <button type="button" class="btn btn-warning removeBtn">Remove from basket</button>
+        </li>
+        {% endfor %}
+      </ul>
+    </main>
+    <footer>contact</footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script src="{% static 'scripts/basket.js' %}"></script>
+  </body>
+</html>
